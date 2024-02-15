@@ -26,3 +26,16 @@ class SpotImage(db.Model):
     caption = db.Column(db.String(256), nullable=True)
 
     spot = db.relationship('Spot', back_populates='images')
+
+
+class Spot(db.Model):
+    __tablename__ = 'spots'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    # Other Spot model columns
+    # Define the relationship to SpotImage
+    images = db.relationship(
+        'SpotImage', back_populates='spot', cascade="all, delete-orphan")
