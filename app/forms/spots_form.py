@@ -14,6 +14,12 @@ class AddSpotForm(FlaskForm):
                            DataRequired(), Length(min=2, max=100)])
     max_guests = IntegerField('Maximum Guests', validators=[
                               DataRequired(), NumberRange(min=1)])
+    bedrooms = IntegerField('Bedrooms', validators=[
+                            DataRequired(), NumberRange(min=1)])
+    beds = IntegerField('Beds', validators=[
+                        DataRequired(), NumberRange(min=1)])
+    baths = IntegerField('Baths', validators=[
+                         DataRequired(), NumberRange(min=1)])
     spot_type = SelectField('Type of Spot', choices=[('house', 'House'), (
         'apartment', 'Apartment'), ('condo', 'Condo'), ('cabin', 'Cabin')], validators=[DataRequired()])
     submit = SubmitField('Add Spot')
