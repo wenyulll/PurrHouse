@@ -1,0 +1,87 @@
+.demo-user {
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+    padding-top: 20px;
+    color: rgb(0, 84, 63);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+.sumbit-demo-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+
+
+.sumbit-demo-buttons button {
+    margin-bottom: 20px;
+}
+
+.login-form-container {
+    margin: 0%
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding: 20px;
+    /* margin: auto; */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.enabled {
+    color: white;
+    background-color: #ff385c;
+    box-shadow: 5px 5px black;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+input {
+    height: 30px;
+    padding-left: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.login-button {
+    padding-top: 20px;
+    margin-top: 15px;
+    display: inline-block;
+    vertical-align: center;
+    font-size: 16px;
+    padding: 10px 20px;
+    box-shadow: 3px 3px 1px gray;
+    border: none;
+    color: white;
+    background-color: #007BFF;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
