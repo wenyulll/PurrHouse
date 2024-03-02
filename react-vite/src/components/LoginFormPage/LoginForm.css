@@ -31,7 +31,14 @@ ul {
     margin-top: 20px;
 }
 
-
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+}
 
 button:hover {
     opacity: 0.9;
