@@ -1,4 +1,38 @@
 .log-in-page-form {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
+}
+
+form {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    color: red;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+
+
+button:hover {
+    opacity: 0.9;
 }
