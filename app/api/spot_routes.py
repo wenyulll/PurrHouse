@@ -47,3 +47,22 @@ def create_spot():
         db.session.commit()
         return spot.to_dict()
     return form.errors, 400
+
+
+@spot_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def update_spot(id):
+    """
+    Updates an existing spot.
+    """
+    spot = Spot.query.get(id)
+    if spot and spot.owner_id == current_user.id:
+        form = SpotForm()
+        if form.validate_on_submit():
+            spot.title = form.data['title']
+            spot.description = form.data['description']
+            spot.price_per_night = form.data['price_per_night']
+            db.session.commit()
+            return spot.to_dict()
+        return form.errors, 400
+    return {'errors': {'message': 'Spot not found or unauthorized'}}, 404
