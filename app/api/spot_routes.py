@@ -66,3 +66,17 @@ def update_spot(id):
             return spot.to_dict()
         return form.errors, 400
     return {'errors': {'message': 'Spot not found or unauthorized'}}, 404
+
+
+@spot_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_spot(id):
+    """
+    Deletes a spot.
+    """
+    spot = Spot.query.get(id)
+    if spot and spot.owner_id == current_user.id:
+        db.session.delete(spot)
+        db.session.commit()
+        return {'message': 'Spot deleted successfully'}
+    return {'errors': {'message': 'Spot not found or unauthorized'}}, 404
