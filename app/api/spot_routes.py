@@ -71,12 +71,10 @@ def update_spot(id):
 @spot_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_spot(id):
-    """
-    Deletes a spot.
-    """
+    """Deletes a spot."""
     spot = Spot.query.get(id)
     if spot and spot.owner_id == current_user.id:
         db.session.delete(spot)
         db.session.commit()
-        return {'message': 'Spot deleted successfully'}
-    return {'errors': {'message': 'Spot not found or unauthorized'}}, 404
+        return {'message': 'Spot deleted successfully'}, 200
+    return {'error': 'Spot not found or unauthorized'}, 404
