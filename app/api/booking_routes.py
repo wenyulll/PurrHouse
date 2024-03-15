@@ -36,3 +36,14 @@ def get_bookings():
         } for booking in bookings
     ]
     return jsonify(bookings_list), 200
+
+
+@booking_bp.route('/bookings/<int:booking_id>', methods=['DELETE'])
+def cancel_booking(booking_id):
+    booking = Booking.query.get_or_404(booking_id)
+    try:
+        db.session.delete(booking)
+        db.session.commit()
+        return jsonify({"message": "Booking cancelled successfully!"}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
