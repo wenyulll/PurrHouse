@@ -21,3 +21,18 @@ def create_booking():
         return jsonify({"message": "Booking created successfully!", "booking_id": new_booking.id}), 201
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+
+
+@booking_bp.route('/bookings', methods=['GET'])
+def get_bookings():
+    bookings = Booking.query.all()
+    bookings_list = [
+        {
+            "id": booking.id,
+            "property_id": booking.property_id,
+            "user_id": booking.user_id,
+            "start_date": booking.start_date.strftime('%Y-%m-%d'),
+            "end_date": booking.end_date.strftime('%Y-%m-%d')
+        } for booking in bookings
+    ]
+    return jsonify(bookings_list), 200
