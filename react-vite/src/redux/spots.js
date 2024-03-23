@@ -1,7 +1,10 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import { csrfFetch } from "./csrf";
 
-// Actions
-const FETCH_SPOTS = 'FETCH_SPOTS';
-const ADD_CURRENT_SPOTS = "ADD_CURRENT_SPOTS"
-const ADD_SPOT = 'ADD_SPOT';
-const REMOVE_SPOT = 'REMOVE_SPOT';
+
+// action type 
+export const LOAD_SPOTS = 'spots/LOAD_SPOTS' //1. get all spots   
+export const LOAD_SPOT = 'spots/LOAD_SPOT' //2. get one spot by spotId 
+export const LOAD_CURRENT_SPOTS = 'spots/LOAD_CURRENT_SPOTS' //3. get current user spots
+export const CREATE_SPOT = 'spot/CREATE_SPOT';//4. add a new spot
+// const UPDATE_SPOT = 'spots/UPDATE_SPOT' //5. update spot
+export const DELETE_SPOT = 'spots/DELETE_SPOT' //6. delete spot
