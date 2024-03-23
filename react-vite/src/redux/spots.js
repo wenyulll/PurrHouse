@@ -37,3 +37,23 @@ export const deleteSpotAction = (spotId) => ({
     spotId
 })
 
+export const fetchSpotsThunk = () => async (dispatch) => {
+    const response = await csrfFetch('/api/spots');
+
+    if (response.ok) {
+        const spots = await response.json();
+
+        dispatch(loadSpotsAction(spots.Spots));
+    };
+};
+
+//thunk 2.get one spot by spotId
+export const fetchSpotThunk = (spotId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}`);
+
+    if (response.ok) {
+        const spot = await response.json();
+
+        dispatch(loadSpotAction(spot));
+    };
+};
