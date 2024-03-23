@@ -57,3 +57,13 @@ export const fetchSpotThunk = (spotId) => async (dispatch) => {
         dispatch(loadSpotAction(spot));
     };
 };
+
+export const fetchCurrentSpotsThunk = () => async (dispatch) => {
+    const response = await csrfFetch('/api/spots/current');
+
+    if (response.ok) {
+        const spots = await response.json();
+
+        dispatch(loadCurrentSpotsAction(spots.Spots));
+    };
+}
