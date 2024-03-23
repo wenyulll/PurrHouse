@@ -67,3 +67,77 @@ export const fetchCurrentSpotsThunk = () => async (dispatch) => {
         dispatch(loadCurrentSpotsAction(spots.Spots));
     };
 }
+
+//thunk 4. add a new spot
+export const createSpotThunk = (createSpot) => async (dispatch) => {
+
+    try {
+        const {
+            address,
+            city,
+            state,
+            country,
+            lat,
+            lng,
+            name,
+            description,
+            price,
+            previewImage,
+            otherImages
+        } = createSpot;
+
+        const createImage = {
+            url: previewImage,
+            preview: true
+        };
+
+        const imagesArr = []
+        otherImages.forEach(image => {
+            if (image.url.length) imagesArr.push(image.url)
+        })
+
+        const response = await csrfFetch('/api/spots', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                address,
+                city,
+                state,
+                country,
+                lat,
+                lng,
+                name,
+                description,
+                price
+            })
+        });
+
+        if (response.ok) {
+
+            const spot = await response.json();
+
+            const imageResponse = await csrfFetch(`/api/spots/${spot.id}/images`, {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(createImage)
+            })
+
+            for (let i = 0; i < imagesArr.length; i++) {
+                let imageUrl = imagesArr[i]
+                await csrfFetch(`/api/spots/${spot.id}/images`, {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ url: imageUrl, preview: false })
+                })
+            }
+            if (imageResponse.ok) {
+                dispatch(createSpotAction(spot))
+                return spot
+            }
+        }
+
+    } catch (e) {
+        const errors = await e.json();
+        return errors
+    };
+};
