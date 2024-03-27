@@ -31,7 +31,6 @@ export const fetchReviewsThunk = (spotId) => async (dispatch) => {
     };
 };
 
-/***** REVIEWS REDUCER  *****/
 
 const initialState = { spot: {}, user: {} };
 
@@ -49,7 +48,13 @@ const reviewsReducer = (state = initialState, action) => {
             newState.spot[action.review.id] = action.review
             return newState;
         };
-
+        case DELETE_REVIEW: {
+            const newState = { ...state, spot: { ...state.spot } }
+            delete newState.spot[action.reviewId];
+            return newState;
+        };
+        default:
+            return state;
     };
 };
 
