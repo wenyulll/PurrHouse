@@ -21,3 +21,13 @@ export const deleteReviewAction = (reviewId) => ({
     type: DELETE_REVIEW,
     reviewId
 })
+
+export const fetchReviewsThunk = (spotId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}/reviews`)
+
+    if (response.ok) {
+        const reviews = await response.json();
+        dispatch(loadReviewsAction(reviews.Reviews));
+    };
+};
+
