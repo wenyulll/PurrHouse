@@ -31,3 +31,26 @@ export const fetchReviewsThunk = (spotId) => async (dispatch) => {
     };
 };
 
+/***** REVIEWS REDUCER  *****/
+
+const initialState = { spot: {}, user: {} };
+
+const reviewsReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case LOAD_REVIEWS: {
+            const newState = { spot: {} }
+            action.reviews.forEach((review) => {
+                newState.spot[review.id] = review;
+            });
+            return newState;
+        };
+        case CREATE_REVIEW: {
+            const newState = { ...state, spot: { ...state.spot } }
+            newState.spot[action.review.id] = action.review
+            return newState;
+        };
+
+    };
+};
+
+export default reviewsReducer;
