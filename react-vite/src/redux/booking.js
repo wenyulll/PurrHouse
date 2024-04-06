@@ -13,3 +13,15 @@ export const loadBookingsAction = (bookings) => ({
     type: LOAD_BOOKINGS,
     bookings
 })
+
+//2.get current user bookings
+export const loadCurrentBookingsAction = (bookings) => ({
+    type: LOAD_CURRENT_BOOKINGS,
+    bookings
+})
+
+//3.create a booking
+export const createBookingAction = (booking) => ({
+    type: CREATE_BOOKING,
+    booking
+})
