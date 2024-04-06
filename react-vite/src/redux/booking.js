@@ -25,3 +25,45 @@ export const createBookingAction = (booking) => ({
     type: CREATE_BOOKING,
     booking
 })
+
+//4.update a booking
+// const editBookingAction = (booking) => ({
+//     type: UPDATE_BOOKING,
+//     booking
+// })
+//5. delete a booking
+export const deleteBookingAction = (bookingId) => ({
+    type: DELETE_BOOKING,
+    bookingId
+})
+
+//thunk 1. get all bookings
+export const fetchBookingsThunk = (spotId) => async (dispatch) => {
+    const response = await csrfFetch(`api/spots/${spotId}/bookings`);
+    console.log("this is my resssss", response)
+    if (response.ok) {
+        const bookings = await response.json();
+
+        dispatch(loadBookingsAction(bookings));
+        return bookings
+    };
+};
+
+//thunk 2.get bookings by the current user
+
+
+
+
+
+const initialStat = { allBookings: {}, singleBooking: {}, userBooking: {} }
+
+const bookingsReducer = (state = initialStat, action) => {
+    // let newState = {}
+    switch (action.type) {
+        default:
+            return state;
+    }
+}
+
+
+export default bookingsReducer
