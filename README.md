@@ -8,6 +8,7 @@ This is the starter for the Flask React project.
 
 
 
+
 2. Install dependencies.
 
    ```bash
